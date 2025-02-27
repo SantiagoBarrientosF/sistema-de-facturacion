@@ -5,9 +5,11 @@ from rest_framework.decorators import api_view
 from sistema_facturacion.models import Customers
 from sistema_facturacion.Serializers import CustomerSerializer
 
-# Crear y Listar clientes
 @api_view(['GET', 'POST'])
 def customer_list(request):
+    """
+    Vista para listar todas los clientes (GET) o crear un nuevo cliente(POST).
+    """
     if request.method == 'GET':
         customers = Customers.objects.all()
         serializer = CustomerSerializer(customers, many=True)

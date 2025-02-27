@@ -7,7 +7,11 @@ from sistema_facturacion.Serializers import ProductSerializer
 
 
 @api_view(['GET', 'POST'])
+ 
 def products_list(request):
+    """
+    Vista para listar todos los productos (GET) o crear un nuevo producto(POST).
+    """
     if request.method == 'GET':
         products = Products.objects.all()
         serializer = ProductSerializer(products, many=True)
@@ -23,6 +27,9 @@ def products_list(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def products_detail(request, dni):
+    """
+    Vista para obtener (GET), actualizar (PUT) o eliminar (DELETE) un producto específica.
+    """
     products = get_object_or_404(Products, dni=dni)
 
     if request.method == 'GET':
